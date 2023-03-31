@@ -1,0 +1,23 @@
+# fly.toml file generated for git-dunxen-dev on 2023-03-31T23:37:50+02:00
+
+app = "git-dunxen-dev"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "jnb"
+
+[env]
+  SOFT_SERVE_INITIAL_ADMIN_KEY = "$SOFT_SERVE_INITIAL_ADMIN_KEY"
+  SOFT_SERVE_KEY_PATH = "/soft-serve/ssh/soft_serve_server_ed25519"
+  SOFT_SERVE_REPO_PATH = "/soft-serve/repos"
+
+[mounts]
+  source = "data"
+  destination = "/soft-serve"
+
+# ssh traffic
+[[services]]
+  protocol = "tcp"
+  internal_port = 23231
+  processes = ["app"]
+  [[services.ports]]
+    port = 22
