@@ -11,12 +11,13 @@ primary_region = "jnb"
   SOFT_SERVE_DATA_PATH = "/soft-serve"
   SOFT_SERVE_NAME = "dunxen's 🍦"
   SOFT_SERVE_SSH_PUBLIC_URL = "ssh://git.dunxen.dev:22"
+  SOFT_SERVE_GIT_MAX_CONNECTIONS = "20"
+  SOFT_SERVE_SSH_IDLE_TIMEOUT = "120"
 
 [mounts]
   source = "data"
   destination = "/soft-serve"
 
-# ssh traffic
 [[services]]
   protocol = "tcp"
   internal_port = 23231
@@ -25,5 +26,5 @@ primary_region = "jnb"
     port = 22
   [services.concurrency]
     type = "connections"
-    hard_limit = 100
-    soft_limit = 50
+    hard_limit = 20
+    soft_limit = 20
